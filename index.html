@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Bootstrap CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <!------------------------------------------FONT AWESOME-------------------------------------------------------->
+    <title>Assembly Tut</title>
+    <style>
+        body {
+            background-image: url("wasm.png");
+            background-size: cover;
+        }
+        
+        .card {
+            box-shadow: 2px 8px 10px black;
+        }
+        
+        .container {
+            height: 800px;
+            overflow-y: scroll;
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container pr-4">
+        <h1 style="color:white; text-align:center">Web Assembly Tutorial by Matthew Schoeman</h2>
+
+            <div class="row py-4">
+                <div class="col-5 card offset-1">
+                    <h1 class="card-header">Addition</h1>
+                    <div class="row card-body">
+
+                        <div class="col-8">
+                            <div class="form-group col-12">
+                                <label for="add1">Choose a number</label>
+                                <input type="number" name="add1" id="add1" value="1" class="form-control" />
+                            </div>
+                            <div class="form-group col-12">
+                                <label for="add2">Add with</label>
+                                <input type="number" name="add2" id="add2" value="1" class="form-control" />
+                            </div>
+                            <button onclick="addResult()" class="btn btn-info form-control">Calculate</button>
+                        </div>
+                        <div id="addResult" class="col-4 mt-4">0</div>
+                    </div>
+                </div>
+                <div class="col-5 offset-1 card">
+                    <h1 class="card-header">Subtraction</h1>
+                    <div class="row card-body">
+
+                        <div class="col-8">
+                            <div class="form-group col-12">
+                                <label for="sub1">Choose a number</label>
+                                <input type="number" name="sub1" id="sub1" value="1" class="form-control" />
+                            </div>
+                            <div class="form-group col-12">
+                                <label for="sub2">Add with</label>
+                                <input type="number" name="sub2" id="sub2" value="1" class="form-control" />
+                            </div>
+                            <button onclick="subMinus()" class="btn btn-info form-control">Calculate</button>
+                        </div>
+                        <div id="minusResult" class="col-4 mt-4">0</div>
+                    </div>
+                </div>
+                <div class="col-5 card mt-4 offset-1">
+                    <h1 class="card-header">Multiply</h1>
+                    <div class="row card-body">
+
+                        <div class="col-8">
+                            <div class="form-group col-12">
+                                <label for="multi1">Choose a number</label>
+                                <input type="number" name="multi1" id="multi1" value="1" class="form-control" />
+                            </div>
+                            <div class="form-group col-12">
+                                <label for="multi2">Add with</label>
+                                <input type="number" name="multi2" id="multi2" value="1" class="form-control" />
+                            </div>
+                            <button onclick="mulTiply()" class="btn btn-info form-control">Calculate</button>
+                        </div>
+                        <div id="addMulti" class="col-4 mt-4">0</div>
+                    </div>
+
+                </div>
+                <div class="col-5 offset-1 card mt-4">
+                    <h1 class="card-header">Division</h1>
+                    <div class="row card-body">
+
+                        <div class="col-8">
+                            <div class="form-group col-12">
+                                <label for="divide1">Choose a number</label>
+                                <input type="number" name="divide1" id="divide1" value="1" class="form-control" />
+                            </div>
+                            <div class="form-group col-12">
+                                <label for="divide2">Add with</label>
+                                <input type="number" name="divide2" id="divide2" value="1" class="form-control" />
+                            </div>
+                            <button onclick="divDivide()" class="btn btn-info form-control">Calculate</button>
+                        </div>
+                        <div id="divideResult" class="col-4 mt-4">0</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 offset-1 card mt-4">
+                <h1 class="card-header">Fibonacci Sequence
+                </h1>
+                <h6>Please note: your browser will slow depending on the number</h6>
+
+                <div class="row card-body">
+
+                    <div class="col-4">
+                        <div class="form-group col-12">
+                            <label for="fib">Choose a number</label>
+                            <input type="number" name="fib" id="fib" value="20" class="form-control" />
+                        </div>
+
+                        <button onclick="fibSequence()" class="col-8 mt-2 btn btn-info form-control">Calculate wasm</button>
+                        <button onclick="fibSequence_JS()" class="col-8 mt-2 btn btn-warning form-control">Calculate js</button>
+                    </div>
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col-6">
+                                <h6>Time taken for WebAssembly to compile</h6>
+                                <p id="webTime">Look in your console for the times</p>
+                            </div>
+                            <div class="col-6">
+                                <h6>Time taken for Javascript to compile</h6>
+                                <p id="jsTime">Look in your console for the times</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
